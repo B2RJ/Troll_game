@@ -3,21 +3,6 @@
 from Partie import Partie
 
 
-# def Jouer(nombreCases, stockPierres, strategieDroit, strategieGauche, precendents = [], precedentsMirroirs = [], affichage = True):
-#
-#     partie = Partie(nombreCases, stockPierres)
-#
-#     enCours = True
-#
-#     while enCours:
-#         if affichage:
-#             print(partie.Resume())
-#
-#         try :
-#             exceptionGauche = False
-#             exceptionDroite = False
-#
-#
 
 #Debut CODE 19/05
 
@@ -48,4 +33,9 @@ def main():
     print("Richard a gagne ", nbVictoire2, " fois")
     print("Il y a eu ", raw, "egalités")        
 
+def main():
+    
+
+if __name__ == "__main__":
+    main()
 
