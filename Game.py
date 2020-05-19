@@ -19,7 +19,7 @@ class Game :
     def jouerPartie(self) :
         self.player1.resetcurrentmoy()
         self.player2.resetcurrentmoy()
-        while self.win == False :
+        while self.victory == False :
             coupJ1 = self.player1.choixNbPierres("OneMoreAll", self.nbCoup, self.nbRock)
             coupJ2 = self.player2.choixNbPierres("Random", self.nbCoup, self.nbRock)
             self.player1.savecoup(coupJ1)
