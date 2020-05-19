@@ -39,3 +39,4 @@ app/*/node_modules/
 .env.test
 .next
 
+.pyc

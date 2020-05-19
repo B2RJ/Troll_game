@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*-coding:utf-8 -*
-from Partie import Partie
+from Player import Player
+from Game import Game
 
 
 
@@ -32,9 +33,6 @@ def main():
     print("Pierre a gagne ", nbVictoire1, " fois.")
     print("Richard a gagne ", nbVictoire2, " fois")
     print("Il y a eu ", raw, "egalités")        
-
-def main():
-    
 
 if __name__ == "__main__":
     main()

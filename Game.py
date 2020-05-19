@@ -1,11 +1,8 @@
 class Game :
-    def nom_methode(self, param_1, param_2):
-        #corps de la méthode...
-        pass
 
     def __init__(self, j1, j2, nb, size):
         #Iniatilisation des variables
-        self.win = False
+        self.victory = False
         self.nbRock = nb
         self.sizeplat = size
         self.player1 = j1
@@ -14,8 +11,8 @@ class Game :
         self.posPlayer2 = 0
         self.nbCoup = 0
         
-        self.player1.setCurrentrock(nbRock)
-        self.player2.setCurrentrock(nbRock)
+        self.player1.setCurrentrock(self.nbRock)
+        self.player2.setCurrentrock(self.nbRock)
 
         self.jouerPartie()
 
@@ -23,14 +20,14 @@ class Game :
         self.player1.resetcurrentmoy()
         self.player2.resetcurrentmoy()
         while self.win == False :
-            coupJ1 = self.player1.choixNbPierres("OneMoreAll", nbCoup, nbRock)
-            coupJ2 = self.player2.choixNbPierres("Random", nbCoup, nbRock)
-            player1.savecoup(coupJ1)
-            player2.savecoup(coupJ2)
+            coupJ1 = self.player1.choixNbPierres("OneMoreAll", self.nbCoup, self.nbRock)
+            coupJ2 = self.player2.choixNbPierres("Random", self.nbCoup, self.nbRock)
+            self.player1.savecoup(coupJ1)
+            self.player2.savecoup(coupJ2)
 
             self.fight(coupJ1, coupJ2)
             self.checkForWin()
-            self.nbCoup++;
+            self.nbCoup += 1
 
         self.win()
 
@@ -45,7 +42,7 @@ class Game :
         or self.posPlayer2 == self.sizeplat 
         or self.player1.getCurrentRock() == O 
         and self.player2.getCurrentRock() == 0):
-            self.win = True
+            self.victory = True
 
     def win(self) : 
         if(self.posPlayer1 > self.posPlayer2) :

@@ -52,7 +52,7 @@ class Player():
             print("")
             return 0
 
-    def resetCurrentMoy(self):
+    def resetcurrentmoy(self):
         self.moyCurrentCoupt = 0
         self.nbCurrentCoupt = 0
 
@@ -80,7 +80,7 @@ class Player():
         return self.currentRock
     
     def setCurrentrock(self,currentRock):
-        this.currentRock = currentRock
+        self.currentRock = currentRock
     
     def getPseudo(self):
         return self.pseudo
