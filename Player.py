@@ -15,7 +15,7 @@ class Player():
 
 
 
-    def choixNombrePierres(self,ia, nbturn, nbrock):
+    def choixNbPierres(self,ia, nbturn, nbrock):
         choice = 0
         if self.currentRock != 0:
             if ia == "Random" :
@@ -56,7 +56,7 @@ class Player():
         self.moyCurrentCoupt = 0
         self.nbCurrentCoupt = 0
 
-    def saveCoup(self, choice):
+    def savecoup(self, choice):
         if self.nbCurrentCoupt!= 0:
             tempMoy = self.moyCurrentCoupt * self.nbCurrentCoupt + choice
             self.nbCurrentCoupt = self.nbCurrentCoupt + 1
@@ -76,7 +76,7 @@ class Player():
             self.nbAllCoupt = self.nbAllCoupt + 1
 
 
-    def getCurrentrock(self):
+    def getCurrentRock(self):
         return self.currentRock
     
     def setCurrentrock(self,currentRock):

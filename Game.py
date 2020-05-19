@@ -38,10 +38,7 @@ class Game :
             self.posPlayer2 = self.posPlayer2 + 1
 
     def checkForWin(self) : 
-        if (self.posPlayer1 == self.sizeplat 
-        or self.posPlayer2 == self.sizeplat 
-        or self.player1.getCurrentRock() == O 
-        and self.player2.getCurrentRock() == 0):
+        if (self.posPlayer1 == self.sizeplat or self.posPlayer2 == self.sizeplat or self.player1.getCurrentRock() == 0 and self.player2.getCurrentRock() == 0):
             self.victory = True
 
     def win(self) : 
