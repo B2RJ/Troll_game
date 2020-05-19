@@ -1,13 +1,12 @@
 #!/usr/bin/python
 # -*-coding:utf-8 -*
 from random import randint
-
+import strategiePrudente
 class Player():
     
-
     def __init__(self,name):
         self.moyAllCoupt = 0
-        self.moyCurrentCoupt = 0;
+        self.moyCurrentCoupt = 0
         self.nbCurrentCoupt = 0
         self.nbAllCoupt = 0
         self.pseudo = name
@@ -15,7 +14,7 @@ class Player():
 
 
 
-    def choixNbPierres(self,ia, nbturn, nbrock):
+    def choixNbPierres(self,ia, nbturn, nbrock,nbRockJ2 = 0, trollPosition = 0, size = 0):
         choice = 0
         if self.currentRock != 0:
             if ia == "Random" :
@@ -23,6 +22,7 @@ class Player():
               print(choice, ", ", self.pseudo)
             # else:
             #     choix = 0
+
             if ia == "OneMore" :
                 if nbturn == 0:
                     choice = int(nbrock / 4)
@@ -30,7 +30,6 @@ class Player():
                 else:
                     choice = self.moyCurrentCoupt + 1
                     print("Je joue: " + 1 )
-            
             
             if ia == "OneMoreAll":
                 if self.nbAllCoupt == 0:
@@ -41,6 +40,11 @@ class Player():
                     print(self.currentRock)
                     choice = int(tempChoice/self.nbAllCoupt + self.nbCurrentCoupt) +1
                     print("Je joue : ", choice)
+            
+            if ia == "Prudente":
+                tab = strategiePrudente.evalGOpt(self.currentRock, nbRockJ2, trollPosition, size)
+                choice = strategiePrudente.analyzeGOpt(tab)
+                print("Je joue : ", choice)
             
             if self.currentRock - choice >= 0:
                 self.currentRock = self.currentRock - choice

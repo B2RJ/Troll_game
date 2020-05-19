@@ -20,7 +20,8 @@ class Game :
         self.player1.resetcurrentmoy()
         self.player2.resetcurrentmoy()
         while self.victory == False :
-            coupJ1 = self.player1.choixNbPierres("OneMoreAll", self.nbCoup, self.nbRock)
+            trollPosition = self.posPlayer1 - self.posPlayer2
+            coupJ1 = self.player1.choixNbPierres("Prudente", self.nbCoup, self.nbRock, self.player2.currentRock, trollPosition, self.sizeplat)
             coupJ2 = self.player2.choixNbPierres("Random", self.nbCoup, self.nbRock)
             self.player1.savecoup(coupJ1)
             self.player2.savecoup(coupJ2)
@@ -32,13 +33,19 @@ class Game :
         self.win()
 
     def fight(self, coupJ1, coupJ2):
-        if coupJ1 != coupJ2:
-            self.posPlayer1 = self.posPlayer1 +1
-        else : 
+        """Fonction qui traite le resultat de la bataille"""
+        if coupJ1 < coupJ2 :
+            self.posPlayer1 = self.posPlayer1 + 1
+            if (self.posPlayer2 > 0) :
+                self.posPlayer2 = self.posPlayer2 - 1
+        if coupJ2 > coupJ1 :
             self.posPlayer2 = self.posPlayer2 + 1
+            if (self.posPlayer1 > 0) :
+                self.posPlayer1 = self.posPlayer1 - 1
 
     def checkForWin(self) : 
-        if (self.posPlayer1 == self.sizeplat or self.posPlayer2 == self.sizeplat or self.player1.getCurrentRock() == 0 and self.player2.getCurrentRock() == 0):
+        """Verifie si la partie est terminee"""
+        if (self.posPlayer1 == (self.sizeplat-1)/2 or self.posPlayer2 == (self.sizeplat-1)/2 or self.player1.getCurrentRock() == 0 and self.player2.getCurrentRock() == 0):
             self.victory = True
 
     def win(self) : 
@@ -57,4 +64,3 @@ class Game :
 
     def setWinner(self, newWinner) :
         self.winner = newWinner
-

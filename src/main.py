@@ -1,11 +1,8 @@
 #!/usr/bin/python
 # -*-coding:utf-8 -*
+
 from Player import Player
 from Game import Game
-
-
-
-#Debut CODE 19/05
 
 def main():
     list = []
@@ -13,14 +10,16 @@ def main():
     nbVictoire2 = 0
     raw = 0
 
-    nbPartie = 10;
+    nbPartie = 10
     Pierre = Player("Pierre")
     Richard = Player("Richard")
 
-    for i in range(0, nbPartie) :
+    i = 0
+    while i < 10 :
         jeu = Game(Pierre, Richard, 31, 11)
         list.append(jeu.getWinner())
         print(jeu.getWinner())
+        i = i + 1
 
     for j in range(0, nbPartie) :
         if list[j] == Pierre.pseudo :
