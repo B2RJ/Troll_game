@@ -44,3 +44,11 @@ app/*/node_modules/
 .next
 
 .pyc
+
+### Fichier production ###
+/out/production/*
+
+### JavaDoc ###
+/doc/*
+
+/src/META-INF/MANIFEST.MF
