@@ -1,18 +1,11 @@
+import it.ssc.pl.milp.*;
+
 import java.util.ArrayList;
-
-import it.ssc.pl.milp.ConsType;
-import it.ssc.pl.milp.Constraint;
-import it.ssc.pl.milp.GoalType;
-import it.ssc.pl.milp.LP;
-import it.ssc.pl.milp.LinearObjectiveFunction;
-import it.ssc.pl.milp.Solution;
-import it.ssc.pl.milp.SolutionType;
-import it.ssc.pl.milp.Variable;
-import static it.ssc.pl.milp.LP.NaN;
-
 import java.util.HashMap;
 import java.util.Random;
 import java.util.logging.LogManager;
+
+import static it.ssc.pl.milp.LP.NaN;
 
 
 /**
@@ -27,7 +20,7 @@ import java.util.logging.LogManager;
  * </ul>
  * @author Richard BRUNEAU et Pierre SABARD
  */
-public class StrategySafe extends Strategy {
+public class StrategySafe2 extends Strategy {
 
     /**
      * La constante qui permet de déterminer quand on a pas trouvé de résultat.
@@ -55,7 +48,7 @@ public class StrategySafe extends Strategy {
      * Le constructeur iniatilise le nombre de pierre jouée à 1.
      * @param p Le plateau qui contient le nombre de pierre et de case.
      */
-    public StrategySafe(Board p) {
+    public StrategySafe2(Board p) {
         super(p);
         this.rocks = 1;
     }
@@ -149,7 +142,7 @@ public class StrategySafe extends Strategy {
     public double[][][] genGopt(double pJ1, double pJ2, double posT) {
         double[][][] goptTable = new double[(int) pJ1][(int) pJ2][3];
         for (int line = 1; line <= pJ1; line++) {
-            for (int column = 1; column <= pJ2; column++) {
+            for (int column = 1; column <= pJ2; column = column + 2) {
                 double t = posT;
                 if (column > line) {
                     t = posT -1;
@@ -172,12 +165,10 @@ public class StrategySafe extends Strategy {
     public double evalGopt(double pJ1, double pJ2, double posT) {
         //Initialement
         double[][][] goptTable = genGopt(pJ1, pJ2, posT);
-        //Pour la question 3
-        //double[][][] goptTable = genGopt(pJ1, (int)pJ2/3, posT);
         double[][] evalTable = new double[(int) pJ1][(int) pJ2];
         
         for (int line = 0; line < goptTable.length; line++) {
-            for (int column = 0; column < goptTable[line].length; column++) {
+            for (int column = 1; column < goptTable[line].length; column = column + 2) {
                 double j1 = goptTable[line][column][0];
                 double j2 = goptTable[line][column][1];
                 double pos = goptTable[line][column][2];

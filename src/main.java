@@ -12,10 +12,12 @@ public class main {
      */
 	public static void main(String[] args) throws Exception {
 
-	    int nbGames = 100;
+	    int nbGames = 10;
         
-        Board p1 = new Board(15, 5);
+        Board p1 = new Board(20, 7);
         Strategy s1 = new StrategySafe(p1);
+        //QUestion 4a
+        //Strategy s1 = new StrategySafe2(p1);
         Strategy s2 = new StrategyRandom(p1);
         
         int nbJ1 = 0;

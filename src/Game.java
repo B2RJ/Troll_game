@@ -97,6 +97,9 @@ public class Game {
         this.rockJ1 = this.board.getRocks();
         this.rockJ2 = this.board.getRocks();
         this.positionT = 0;
+        //this.rockJ1 = 20;
+        //this.rockJ2 = 20;
+        //this.positionT = -1;
         this.nbBox = this.board.getBoxes();
         this.winner = 0;
     }
@@ -141,7 +144,7 @@ public class Game {
                 ((StrategySafe) this.strategy2).setMap(this.map);
             }
         }
-        
+        int i = 0;
         while(gameOver()) {
             double pJ1 = this.rockJ1;
             double pJ2 = this.rockJ2;
@@ -151,6 +154,35 @@ public class Game {
             result = lauchPlay(pJ1, pJ2, posT);
             double newPj1 = result[0];
             double newPj2 = result[1];
+
+            //System.out.println("pj1: "+ newPj1 + " pj2: " + newPj2);
+            if (i==0) {
+                if(this.strategy1 instanceof StrategySafe) {
+                    //Question 1
+                    // Permet de trouver la valeur Gopt dans la situation demandé
+                    //System.out.println(((StrategySafe) this.strategy1).evalGopt(23,20, -1));
+                    //Affiche -0.1664669487064999
+
+                    // Permet de trouver la Gopt avec le x le plus petit pour Gopt est inférieur à 0
+                    //System.out.println(((StrategySafe) this.strategy1).evalGopt(20,16, -1));
+                    // Affiche 0.2283533416504434
+                    // System.out.println(((StrategySafe) this.strategy1).evalGopt(20,17, -1));
+                    // Affiche -0.039592568673246745
+                    // Donc, le minimum pour x avec un gain < 0 est 17.
+
+                    //Question 3
+                    //System.out.println("GAIN: " + ((StrategySafe) this.strategy1).evalGopt(20,20, 0));
+                    //Affiche 0.0
+
+                    //Question 4
+                    //System.out.println("GAIN: " + ((StrategySafe) this.strategy1).evalGopt(20,20, 0));
+                    //Affiche -0.02054972972976948
+                }
+                if(this.strategy1 instanceof StrategySafe2) {
+                    System.out.println(((StrategySafe2) this.strategy1).evalGopt(20,20, -1));
+                }
+            }
+            i++;
             
             this.rockJ1 = pJ1 - newPj1;
             this.rockJ2 = pJ2 - newPj2;
@@ -159,6 +191,11 @@ public class Game {
             }else if (newPj2 > newPj1) {
                 this.positionT--;
             }
+            //Question 4b
+            if(newPj1 > newPj2 + 2) {
+               // this.positionT++;
+            }
+            //System.out.println("pj1: "+ newPj1 + " pj2: " + newPj2 + " troll :" + this.positionT);
         }
         this.nbGames++ ;
     }

@@ -28,6 +28,17 @@ public class StrategyRandom extends Strategy{
         Random random = new Random();
         int min = 1;
         int max = (int)pJ2;
+        //Pour question 3
+        //int max = (int)pJ2/3;
+
         return random.nextInt(max - min + 1) + min;
+
+
+        //Question 4a
+        //int pierre = 2;
+        //while (pierre % 2 == 0) {
+        //    pierre  = random.nextInt(max - min + 1) + min;
+        //
+        //return pierre;
     }
 }
