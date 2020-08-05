@@ -9,44 +9,44 @@ import static it.ssc.pl.milp.LP.NaN;
 
 
 /**
- * Cette classe hérite de la classe Stratégie.<br>
- * Cette classe a été réalisé dans le cadre du projet.
- * Cette classe est caractérisée par :
+ * This class inherits the Strategy class.<br>
+ * This class was created as part of the university project.
+ * This class is characterized by :
  * <ul>
- *     <li>Une constante lorsqu'il n'y a pas de résultats trouvés.</li>
- *     <li>Une map de coup joués.</li>
- *     <li>Une chaine de caractère représentant la tête.</li>
- *     <li>Le nombre de pierre jetées par le joueur.</li>
+ *     <li>A constant when there are no results found.</li>
+ *     <li>A map of moves played.</li>
+ *     <li>A string representing the head.</li>
+ *     <li>The number of stones thrown by the player.</li>
  * </ul>
- * @author Richard BRUNEAU et Pierre SABARD
+ * @author B2RJ et Pierre SABARD
  */
 public class StrategySafe2 extends Strategy {
 
     /**
-     * La constante qui permet de déterminer quand on a pas trouvé de résultat.
+     * The constant that determines when we haven't found a match.
      */
     private final double NOT_FOUND = 404;
 
     /**
-     * La map d'historique des coups.
-     * Elle permet de ne chercher qu'une seule fois par situation.
+     * The shot history map.
+     * It allows you to search only once per situation.
      */
     private HashMap<String, Double> map = new HashMap<>();
 
     /**
-     * La chaine de caractère qui rentre dans map.
+     * The character string that goes into map.
      */
     private String head;
 
     /**
-     * Le nombre de pierre jetées par le joueur.
+     * The number of stones thrown by the player.
      */
     private int rocks;
 
     /**
-     * Le constructeur de la classe StrategiePrudente.
-     * Le constructeur iniatilise le nombre de pierre jouée à 1.
-     * @param p Le plateau qui contient le nombre de pierre et de case.
+     * The builder of the PrudentStrategy class.
+     * The builder iniatilizes the number of stones played to 1.
+     * @param p The board that contains the number of stones and squares.
      */
     public StrategySafe2(Board p) {
         super(p);
@@ -54,27 +54,27 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * Geter de la map.
-     * @return La map.
+     * Getter of the map.
+     * @return The map.
      */
     public HashMap<String, Double> getMap() {
         return this.map;
     }
 
     /**
-     * Seter de la map.
-     * @param m La nouvelle map.
+     * Setter of the map.
+     * @param m The new map.
      */
     public void setMap(HashMap<String, Double> m) {
         this.map = m;
     }
 
     /**
-     * La fonction qui fait jouer la stratégie.
-     * @param pJ1  Le nombre de pierre du joueur 1.
-     * @param pJ2  Le nombre de pierre du joueur 2.
-     * @param posT La position du Troll.
-     * @return Le nombre de pierres. jouées.
+     * The function that plays strategy.
+     * @param pJ1 The number of stones of player 1.
+     * @param pJ2 The number of stone of player 2.
+     * @param posT The position of the Troll.
+     * @return The number of stones. played.
      */
     @Override
     public int play(double pJ1, double pJ2, double posT) {
@@ -84,19 +84,20 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui recherche les cas simples du tableau.
-     * @param pJ1 Le nombre de pierre du joueur 1.
-     * @param pJ2 Le nombre de pierre du joueuer 2.
-     * @param posT La position du Troll
-     * @return Le résultat de l'affrontement. <ul>
-     *     <li>1 si le joueur gagne la bataille</li>
-     *     <li>-1 si le joueur perd la bataille</li>
-     *     <li>0 si il y a égalité</li>
-     *     <li>NOT_FOUND si le cas n'est pas trivial</li>
+     * The function that looks for simple cases in the table.
+     * @param pJ1 The number of stones of player 1.
+     * @param pJ2 The number of stone of player 2.
+     * @param posT The position of the Troll
+     * @return The result of the confrontation.
+     * <ul>
+     *  <li> 1 if the player wins the battle </li>
+     *  <li>-1 if the player loses the battle </li>
+     *  <li> 0 if there's a tie</li>
+     *  <li>NOT_FOUND if the case is not trivial</li>
      * </ul>
      */
     public double dico(double pJ1, double pJ2, double posT) {
-        //Si un joueur gagne
+        //If a player win
         int nbBoxes = super.getBoard().getBoxes();
         if (posT == ((nbBoxes - 1)/2)) {
             return 1;
@@ -105,7 +106,7 @@ public class StrategySafe2 extends Strategy {
             return -1;
         }
 
-        //Cas J1 n'as plus de pierre
+        //If Player 1 has no more stones
         if (pJ1 == 0) {
             if (posT - pJ2 > 0) {
                 return 1;
@@ -115,7 +116,7 @@ public class StrategySafe2 extends Strategy {
               return -1;
             }
         }
-        //Cas J2 n'a plus de pierre
+        //If Player 2 has no more stones
         if (pJ2 == 0) {
             if (posT + pJ1 > 0) {
                 return 1;
@@ -125,7 +126,7 @@ public class StrategySafe2 extends Strategy {
               return -1;
             }
         }
-        //Cas egalite
+        //equality
         if (pJ1 == pJ2 && posT == 0) {
             return 0;
         }
@@ -133,11 +134,11 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui génère le tableau en fonction des paramètres.
-     * @param pJ1 Le nombre de pierre du joueur 1.
-     * @param pJ2 Le nombre de pierre du joueur 2.
-     * @param posT La position du Troll.
-     * @return Un tableau en 3D avec le calcul des gains.
+     * The function that generates the table according to the parameters.
+     * @param pJ1 The number of stone of player 1.
+     * @param pJ2 The number of stone of player 2.
+     * @param posT The position of the troll.
+     * @return A 3D table with the calculation of the winnings.
      */
     public double[][][] genGopt(double pJ1, double pJ2, double posT) {
         double[][][] goptTable = new double[(int) pJ1][(int) pJ2][3];
@@ -156,14 +157,13 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui regarde les cas triviaux puis resout les cas non triviaux.
-     * @param pJ1 Le nombre de pierre du joueur 1.
-     * @param pJ2 Le nombre de pierre du joueur 2.
-     * @param posT La position du troll
-     * @return La valeur du gain.
+     * The function that looks at trivial cases and then solves non-trivial cases.
+     * @param pJ1 The number of stone of player 1.
+     * @param pJ2 The number of stone of the player 2.
+     * @param posT The position of the troll
+     * @return The value of the gain.
      */
     public double evalGopt(double pJ1, double pJ2, double posT) {
-        //Initialement
         double[][][] goptTable = genGopt(pJ1, pJ2, posT);
         double[][] evalTable = new double[(int) pJ1][(int) pJ2];
         
@@ -201,15 +201,15 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui détermine le nombre de pierres à jouer selon une proba sur les pierres possible
-     * @param listeProb Le tableau de probabiliter
-     * @param linesNumber Les lignes dominées
-     * @return Le nombre de pierre à jeter
+     * The function that determines the number of gems to play based on a probability on the possible gems.
+     * @param listProb The probability table
+     * @param linesNumber The dominated lines
+     * @return The number of stone to throw
      */
-    public int throwRocks(double[] listeProb, ArrayList<Integer> linesNumber) {
-        double[] weights = new double[listeProb.length -1];
-        for(int i = 1; i < listeProb.length ; i++) {
-            weights[i-1] = Math.round(listeProb[i] * 1000.0);
+    public int throwRocks(double[] listProb, ArrayList<Integer> linesNumber) {
+        double[] weights = new double[listProb.length -1];
+        for(int i = 1; i < listProb.length ; i++) {
+            weights[i-1] = Math.round(listProb[i] * 1000.0);
         }
         ArrayList<Integer> probaTable = new ArrayList<>();
         for(int w = 0 ; w < weights.length ; w++) {
@@ -227,10 +227,10 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui élimine les lignes et colonnes dominées.
-     * @param evalTable Le tableau à filtrer.
-     * @param linesNumber La liste des lignes supprimées.
-     * @return Le tableau sans les lignes et colonnes dominées
+     * The function that eliminates dominated rows and columns.
+     * @param evalTable The array to filter.
+     * @param linesNumber The list of deleted lines.
+     * @return The table without the dominated rows and columns.
      */
     public double[][] dominate(double[][] evalTable, ArrayList<Integer> linesNumber)
     {
@@ -239,10 +239,10 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * Supprimer les lignes dominées.
-     * @param evalTable Le tableau à filtrer.
-     * @param linesNumber La liste de lignes supprimées.
-     * @return Le tableau filtré.
+     * Delete dominated lines.
+     * @param evalTable The table to be filtered.
+     * @param linesNumber The list of deleted lines.
+     * @return The filtered table.
      */
     public double[][] deleteLine(double[][]evalTable, ArrayList<Integer> linesNumber) {
         ArrayList<Integer> LinesToDelete = new ArrayList<>();
@@ -292,9 +292,9 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * Supprime les colonnes ou J2 domine.
-     * @param evalTable Le tableau à filtrer.
-     * @return Le tableau filtré.
+     * Deletes columns where Player 2 dominates.
+     * @param evalTable The array to be filtered.
+     * @return The filtered table.
      */
     public double[][] deleteColumn(double[][]evalTable) {
         ArrayList<Integer> ColumnsToDelete = new ArrayList<>();
@@ -348,9 +348,9 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * La fonction qui gère le simplex
-     * @param evalTable Le tableau à analyser à l'aide du simplex.
-     * @return Les coodonnées de la case à jouer.
+     * The function that handles the simplex
+     * @param evalTable The table to be analyzed using the simplex.
+     * @return The coordinates of the square to be played.
      */
     public double[] simplexResolver(double[][] evalTable) {
         int nbColumns = 0;
@@ -424,12 +424,12 @@ public class StrategySafe2 extends Strategy {
     }
 
     /**
-     * Fonction qui résout le simplex.
-     * @param A Le tableau qui contient coefficients de chaque xi.
-     * @param b Le tableau qui contient t représentant le gain maximum.
-     * @param c Le tableau qui contient le gain de chaque lancé possible.
-     * @param rel Le tableau de ConsType.
-     * @return Le simplex résolu.
+     * Function that solves simplex.
+     * @param A The array that contains coefficients of each xi.
+     * @param b The table that contains t representing the maximum gain.
+     * @param c The table that contains the gain of each possible throw.
+     * @param rel The array of ConsType.
+     * @return The resolved simplex.
      * @throws Exception
      */
     public double[] simplex(double[][] A, double[] b, double[] c, ConsType[] rel) throws Exception{
