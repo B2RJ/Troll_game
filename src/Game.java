@@ -1,19 +1,19 @@
 import java.util.HashMap;
 
 /**
- * Cette classe s'occupe de gérer une partie. <br>
- *     Une partie est caractérisé par :
+ * This class is in charge of running a game. <br>
+ *     One game is characterized by:
  *     <ul>
- *         <li>Un plateau.</li>
- *         <li>Une stratégie pour chaque joueur.</li>
- *         <li>Un nombre de pierre pour chaque joueur.</li>
- *         <li>La position du Troll.</li>
- *         <li>Le nombre de case.</li>
- *         <li>Un entier qui indique le vainqueur.
+ *         <li>A board.</li>
+ *         <li>A strategy for each player.</li>
+ *         <li>A number of stones for each player.</li>
+ *         <li>The position of the Troll.</li>
+ *         <li>The number of boxes.</li>
+ *         <li>An interger that indicates the winner.
  *         <ul>
- *             <li>0 en cas d'égalité.</li>
- *             <li>1 si le joueur 1 gagne.</li>
- *             <li>2 si le joueur 2 gagne.</li>
+ *             <li>0 in case of a tie.</li>
+ *             <li>1 if player 1 wins.</li>
+ *             <li>2 if player 2 wins.</li>
  *         </ul>
  *         </li>
  *         <li>Une map qui contient l'historique des position.</li>
@@ -21,42 +21,42 @@ import java.util.HashMap;
  *     </ul>
  * @see Board
  * @see Strategy
- * @author Richard BRUNEAU et Pierre SABARD
+ * @author B2RJ et Pierre SABARD
  */
 
 public class Game {
     /**
-     * Le plateau qui contient le nombre de pierre et la taille.
+     * The board that contains the number of stones and the size.
      */
     private Board board;
 
     /**
-     * La stratégie du joueur.
+     * The strategy of each player
      */
     private Strategy strategy1, strategy2;
 
     /**
-     * Le nombre de pierre du joueur.
+     * The number of stones.
      */
     private double rockJ1, rockJ2;
 
     /**
-     * La position du Troll.
+     * The troll's position
      */
     private double positionT;
 
     /**
-     * La taille du plateau.
-     * Equivalent à p.getBoxes()
+     * The size of the tray.
+     * Equivalent to p.getBoxes()
      */
     private double nbBox;
 
     /**
-     * L'entier qui détermine qui a gagné.
+     * The integer that determines who won.
      * <ul>
-     *    <li>0 en cas d'égalité.</li>
-     *    <li>1 si le joueur 1 gagne.</li>
-     *    <li>2 si le joueur 2 gagne.</li>
+     *    <li>0 in case of tie.</li>
+     *    <li>1 if player 1 wins.</li>
+     *    <li>2 if player 2 wins.</li>
      * </ul>
      */
     private int winner;
@@ -67,15 +67,15 @@ public class Game {
     private HashMap<String, Double> map = new HashMap<String, Double>();
 
     /**
-     * Le nombre de parties déjà effectuées.
+     * The history of the moves played.
      */
     private int nbGames;
 
     /**
-     * Le constructeur de la classe partie.
-     * @param p Le plateau. Contient le nombre de pierres et le nombre de case
-     * @param s1 La stratégie du joueur 1
-     * @param s2 La stratégie du joueur 2
+     * The builder of the class part.
+     * @param p The tray. Contains the number of stones and the number of squares.
+     * @param s1 Player 1's strategy
+     * @param s2 Player 2's strategy
      */
     public Game(Board p, Strategy s1, Strategy s2) {
         this.board = p;
@@ -90,27 +90,24 @@ public class Game {
     }
 
     /**
-     * Permet de ré-initialiser la partie. Cette fonction est utile quand on
-     * lance plusieurs parties les unes après les autres.
+     * Allows you to reset the game. This function is useful when
+     * throws several games one after the other.
      */
     public void initGame() {
         this.rockJ1 = this.board.getRocks();
         this.rockJ2 = this.board.getRocks();
         this.positionT = 0;
-        //this.rockJ1 = 20;
-        //this.rockJ2 = 20;
-        //this.positionT = -1;
         this.nbBox = this.board.getBoxes();
         this.winner = 0;
     }
 
     /**
-     * Getter de victoire
-     * @return le vainqueur.
+     * Getter of victory
+     * @return the winner.
      * <ul>
-     * <li>0 en cas d'égalité.</li>
-     * <li>1 si le joueur 1 gagne.</li>
-     * <li>2 si le joueur 2 gagne.</li>
+     * <li> 0 in case of a tie.</li>
+     * <li> 1 if player 1 wins.</li>
+     * <li> 2 if player 2 wins.</li>
      * </ul>
      */
     public int getWinner() {
@@ -118,11 +115,11 @@ public class Game {
     }
 
     /**
-     * La fonction qui fait jouer chaque strategie
-     * @param pJ1 Le nombre de pierres du joueur 1
-     * @param pJ2 Le nombre de pierres du joueur 2
-     * @param posT La position du troll
-     * @return Un tableau de deux cases qui contient le nombre de pierres joué par chaque joueur.
+     * The function that brings each strategy into play
+     * @param pJ1 The number of stones of player 1
+     * @param pJ2 The number of stones of player 2
+     * @param posT The troll's position
+     * @return A two-square board that contains the number of stones played by each player.
      */
     public int[] lauchPlay(double pJ1, double pJ2, double posT) {
         int[] throwRocks = new int[2];
@@ -133,7 +130,7 @@ public class Game {
     }
 
     /**
-     * Cette fonction gère la partie.
+     * This function manages the game.
      */
     public void startGame() {
         if (this.nbGames > 0) {
@@ -201,12 +198,12 @@ public class Game {
     }
 
     /**
-     * Cette fonction gère si la partie est finie.
-     * En cas de fin de partie, la fonction indique qui a gagné.
-     * @return Le booléen qui indique si la partie est fini.
+     * This function controls whether the game is over.
+     * If the game is over, the function indicates who won.
+     * @return The boolean that indicates if the game is over.
      */
     public boolean gameOver() {
-        //Cas J1 n'a plus de pierres
+        //If Player 1 has no more stones
         if (this.rockJ1 <= 0) {
             if (this.positionT - this.rockJ2 > 0) {
                 this.winner = 1;
@@ -216,7 +213,7 @@ public class Game {
                 this.winner = 2;
             }
             return false;
-        //Cas J2 n'as plus de pierre
+        //If Player 2 has no more stones
         } else if (this.rockJ2 <= 0) {
             if (this.positionT + this.rockJ1 > 0) {
                 this.winner = 1;
@@ -226,11 +223,11 @@ public class Game {
                 this.winner = 2;
             }
             return false;
-        //Cas J1 gagne
+        //Player 1 win
         } else if ( this.positionT == ((this.nbBox - 1)/2)) {
             this.winner = 1;
             return false;
-        //Cas J2 gagne
+        //Player 2 win
         } else if ( this.positionT == -((this.nbBox - 1)/2) ) {
             this.winner = 2;
             return false;

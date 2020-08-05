@@ -1,14 +1,14 @@
 /**
- * La classe principale
- * @author Richard BRUNEAU et Pierre SABARD
+ * The main class
+ * @author B2RJ and Pierre SABARD
  */
 
 
 public class main {
 
     /**
-     * Fonction qui gère le programme
-     * @param args Ici, args n'est pas utilisé
+     * Function main
+     * @param args Args isn't used
      */
 	public static void main(String[] args) throws Exception {
 
@@ -16,8 +16,6 @@ public class main {
         
         Board p1 = new Board(20, 7);
         Strategy s1 = new StrategySafe(p1);
-        //QUestion 4a
-        //Strategy s1 = new StrategySafe2(p1);
         Strategy s2 = new StrategyRandom(p1);
         
         int nbJ1 = 0;
@@ -43,11 +41,11 @@ public class main {
             }
         }
         System.out.println("]");
-        System.out.println("En " + nbGames + " parties,");
-        System.out.println("Le joueur 1 a gagné " + nbJ1 + " fois.");
-        System.out.println("Le joueur 2 a gagné " + nbJ2 + " fois.");
+        System.out.println("In " + nbGames + " games,");
+        System.out.println("Player 1 has won " + nbJ1 + " times.");
+        System.out.println("Player 2 has won " + nbJ2 + " times.");
         if(nbEq > 0) {
-            System.out.println("Il y a eu " + nbEq + " fois égalité.");
+            System.out.println("There have been five ties " + nbEq + " ties.");
         }
 	}
 }

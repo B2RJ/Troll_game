@@ -1,27 +1,27 @@
 /**
- * Cette classe s'occupe de gérer le plateau. <br>
- *     Une plateau est caractérisé par :
- *     <ul>
- *         <li>Un nombre de pierres au début de la partie.</li>
- *         <li>Un nombre de cases.</li>
- *     </ul>
- * @author Richard BRUNEAU et Pierre SABARD
+ * This class is in charge of managing the set. *
+ * A tray is characterized by:
+ * <ul>
+ *  <li> A number of stones at the beginning of the game. </li>
+ *  <li> A number of boxes.</li>
+ * </ul>
+ * @author B2RJ and Pierre SABARD
  */
 
 public class Board {
 
     /**
-     * Le nombre de pierre de chaque joueur.
+     * The number of stones thrown by the player.
      */
     private int rocks;
 
     /**
-     * Le nombre de case sur le plateau.
+     * The number of case on the board.
      */
     private int boxes;
 
     /**
-     * Le constructeur par défaut d'un plateau.
+     * The default constructor
      */
     public Board()
     {
@@ -30,9 +30,9 @@ public class Board {
     }
 
     /**
-     * Le constructeur avec des paramètres choisis.
-     * @param r Le nombre de pierres.
-     * @param b Le nombre de cases.
+     * The constructor with selected parameters.
+     * @param r The number of stones.
+     * @param b The number of squares.
      */
     public Board(int r, int b)
     {
@@ -44,33 +44,33 @@ public class Board {
     }
 
     /**
-     * Getter du nombre de pierres.
-     * @return Le nombre de pierres.
+     * Getter of stones number
+     * @return The number of stones.
      */
     public int getRocks() {
         return rocks;
     }
 
     /**
-     * Setter du nombre de pierres.
-     * @param rocks Le nouveau nombre de pierres.
-     * @deprecated Ne sert à rien.
+     * Setter of the number of stones.
+     * @param rocks The new number of rocks.
+     * @deprecated Is useless.
      */
     public void setRocks(int rocks) {
         this.rocks = rocks;
     }
 
     /**
-     * Getter du nombre de cases.
-     * @return Le nombre de cases
+     * Getter of the number of boxes.
+     * @return The number of boxes
      */
     public int getBoxes() {
         return boxes;
     }
 
     /**
-     * Setter du nombre de cases
-     * @param boxes Le nouveau nombre de cases.
+     * Setter of the number cases
+     * @param boxes The new number of cases.
      */
     public void setBoxes(int boxes) {
         this.boxes = boxes;
