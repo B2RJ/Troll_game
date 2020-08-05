@@ -36,8 +36,6 @@ public class main {
 
         Strategy s1, s2;
 
-/*        s1 = new StrategySafe(b1);
-        s2 = new StrategySafe(b1);*/
 
         switch(choice) {
             case 1:
