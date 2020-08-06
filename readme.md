@@ -8,5 +8,7 @@ After the end of the project, the ability to confront AI was implemented. </p>
 <h2>Getting started</h2>
 
 <p>To launch the program since the root : </p>
+
 `java -jar out/artifacts/jeudutroll_jar/jeudutroll.jar`
+
 <p>Each confrontation will take place 10 times with 20 stones on a board of 7 squares.</p>
